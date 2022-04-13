@@ -1,21 +1,33 @@
 package com.company;
 
 public class Order {
-    private int year, amount, maxNumOfPagest, numberOfPages, numberOFPagesLeft;
-    private boolean isE;
-    private String employSignature;
-    //add geter and setter for the other
+    int year, amount, maxNumOfPagest, numberOfPages, numberOFPagesLeft;
+    boolean isE;
+    String employSignature;
+
+    public Order(int NewYear, int newAmount, int newMaxNumOfPagest, int newNumberOfPages, int newNumberOFPagesLeft,
+                 boolean newIsE,String newEmploySignature ){
+        year = NewYear;
+        amount = newAmount;
+        maxNumOfPagest = newMaxNumOfPagest;
+        numberOfPages = newNumberOfPages;
+        numberOFPagesLeft = newNumberOFPagesLeft;
+        isE = newIsE;
+        employSignature = newEmploySignature;
+    }
 
     public String changeEmploySignature(String newEmploySignature){
         return this.employSignature = newEmploySignature;
     }
 
-    public double usedPages(double pages){
-        double lastPages = 0;
-        if  (numberOFPagesLeft <= pages) {
-            lastPages = this.numberOFPagesLeft / pages;
+    public double usedPages(int pages){
+        float lastPages = 0;
+        if  (numberOFPagesLeft >=  pages) {
+            lastPages = (float) this.numberOFPagesLeft / pages;
         } else {
-            String message = String.format("Number of pages %d is greater than input pages value %d", numberOFPagesLeft, pages);
+            System.out.println(numberOFPagesLeft);
+            System.out.println(pages);
+            String message = String.format("Number of pages %s is greater than input pages value %s", numberOFPagesLeft, pages);
             System.out.println(message);
         }
         return lastPages;
