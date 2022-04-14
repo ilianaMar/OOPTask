@@ -6,6 +6,10 @@ public class TradeOrder extends Order {
         super(newOrderNumber, newClientDetails, newTotalAmount);
     }
 
+    public TradeOrder(){
+        super();
+    }
+
     public TradeOrder(int newOrderNumber){
         super(newOrderNumber);
     }
@@ -26,6 +30,7 @@ public class TradeOrder extends Order {
 
         TradeOrder thirdObject = new TradeOrder(888888, "Third Object",
                 myList,  111 );
+        TradeOrder fourthObject = new TradeOrder();
 
         System.out.println(firstObject.orderNumber);
         System.out.println(firstObject.clientDetails);
@@ -38,6 +43,7 @@ public class TradeOrder extends Order {
         System.out.println(firstObject.equals(firstObject));
         System.out.println(secondObject.equals(firstObject));
         System.out.println(thirdObject.equals(firstObject));
+        System.out.println(thirdObject.equals(thirdObject));
     }
 
 }

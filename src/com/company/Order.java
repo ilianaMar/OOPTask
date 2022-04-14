@@ -38,11 +38,11 @@ abstract public class Order {
     }
 
     public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        } else {
-            return false ;
+        if (obj.getClass() != this.getClass()) {
+            return false;
         }
+
+        return obj.hashCode() == this.hashCode();
     }
 }
 
