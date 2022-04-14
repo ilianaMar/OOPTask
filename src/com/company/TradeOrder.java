@@ -1,7 +1,7 @@
 package com.company;
 import java.util.LinkedList;
 
-public class TradeOrder extends AbstractOrder {
+public class TradeOrder extends Order {
     public TradeOrder(int newOrderNumber, String newClientDetails, float newTotalAmount){
         super(newOrderNumber, newClientDetails, newTotalAmount);
     }
@@ -13,21 +13,6 @@ public class TradeOrder extends AbstractOrder {
     public TradeOrder(int newOrderNumber, String newClientDetails,
                       LinkedList<String> newArticleLists, float newTotalAmount){
         super(newOrderNumber, newClientDetails, newArticleLists, newTotalAmount);
-    }
-
-    private static String assertEqualHashCode(TradeOrder firstObj, TradeOrder secondObj)
-    {
-        String message;
-        if(firstObj.equals(secondObj))
-        {
-            message = String.format("The variables are equal: \n  %s =  %s", firstObj.hashCode(), secondObj.hashCode());
-        }else {
-            message = String.format("First object %s is not equal to second objects %s",
-                    firstObj.hashCode(), secondObj.hashCode());
-
-        }
-
-        return message;
     }
 
     public static void main(String[] args){
@@ -42,14 +27,17 @@ public class TradeOrder extends AbstractOrder {
         TradeOrder thirdObject = new TradeOrder(888888, "Third Object",
                 myList,  111 );
 
-
         System.out.println(firstObject.orderNumber);
         System.out.println(firstObject.clientDetails);
         System.out.println(firstObject.totalAmount);
 
-        System.out.println(assertEqualHashCode(firstObject, secondObject));
-        System.out.println(assertEqualHashCode(firstObject, firstObject));
-        System.out.println(assertEqualHashCode(thirdObject, secondObject));
+        System.out.println(firstObject.hashCode());
+        System.out.println(secondObject.hashCode());
+        System.out.println(thirdObject.hashCode());
+
+        System.out.println(firstObject.equals(firstObject));
+        System.out.println(secondObject.equals(firstObject));
+        System.out.println(thirdObject.equals(firstObject));
     }
 
 }

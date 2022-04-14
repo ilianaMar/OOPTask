@@ -10,21 +10,6 @@ public class TradeInvoice extends Invoice{
         super(newInvoiceNumber, newClientDetails, newTotalAmount);
     }
 
-    private static String assertEqualHashCode(TradeInvoice firstObj, TradeInvoice secondObj)
-    {
-        String message;
-        if(firstObj.equals(secondObj))
-        {
-            message = String.format("The variables are equal: \n  %s =  %s", firstObj.hashCode(), secondObj.hashCode());
-        }else {
-            message = String.format("First object %s is not equal to second objects %s",
-                    firstObj.hashCode(), secondObj.hashCode());
-
-        }
-
-        return message;
-    }
-
     public static void main(String[] args){
         TradeInvoice firstObject = new TradeInvoice(10001, "User Firstname");
         TradeInvoice secondObject = new TradeInvoice(200002, "User SecondName",
@@ -38,9 +23,9 @@ public class TradeInvoice extends Invoice{
         System.out.println(secondObject.totalAmount);
         System.out.println(secondObject.getOrderDate());
 
-        System.out.println(assertEqualHashCode(firstObject, secondObject));
-        System.out.println(assertEqualHashCode(firstObject, firstObject));
-        System.out.println(assertEqualHashCode(secondObject, secondObject));
+        System.out.println(firstObject.hashCode());
+        System.out.println(secondObject.hashCode());
+
     }
 
 }

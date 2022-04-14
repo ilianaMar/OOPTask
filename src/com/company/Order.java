@@ -1,35 +1,48 @@
 package com.company;
+import java.util.LinkedList;
 
-public class Order {
-    int year, amount, maxNumOfPagest, numberOfPages, numberOFPagesLeft;
-    boolean  isEOrder;
-    String employSignature;
+abstract public class Order {
+    int orderNumber;
+    String clientDetails;
+    LinkedList<String> articleLists = new LinkedList<>();
+    float totalAmount;
+    final static String orderName = "OrderName";
 
-    public Order(int NewYear, int newAmount, int newMaxNumOfPagest, int newNumberOfPages, int newNumberOFPagesLeft,
-                 boolean newIsOrder,String newEmploySignature ){
-        year = NewYear;
-        amount = newAmount;
-        maxNumOfPagest = newMaxNumOfPagest;
-        numberOfPages = newNumberOfPages;
-        numberOFPagesLeft = newNumberOFPagesLeft;
-        isEOrder = newIsOrder;
-        employSignature = newEmploySignature;
+    public Order(){
     }
 
-    public String changeEmploySignature(String newEmploySignature){
-        return this.employSignature = newEmploySignature;
+    public Order(int newOrderNumber){
+        orderNumber = newOrderNumber;
     }
 
-    public double usedPages(int pages){
-        float lastPages = 0;
-        if  (numberOFPagesLeft >=  pages) {
-            lastPages = (float) this.numberOFPagesLeft / pages;
-        } else {
-            System.out.println(numberOFPagesLeft);
-            System.out.println(pages);
-            String message = String.format("Number of pages %s is greater than input pages value %s", numberOFPagesLeft, pages);
-            System.out.println(message);
+    public Order(int newOrderNumber, String newClientDetails, float newTotalAmount){
+        orderNumber = newOrderNumber;
+        clientDetails = newClientDetails;
+        totalAmount = newTotalAmount;
+    }
+
+    public Order(int newOrderNumber, String newClientDetails,
+                 LinkedList<String> newArticleLists, float newTotalAmount){
+        orderNumber = newOrderNumber;
+        clientDetails = newClientDetails;
+        articleLists = newArticleLists;
+        totalAmount = newTotalAmount;
+    }
+
+    public int hashCode(){
+        int code = orderNumber * orderName.hashCode();
+        if(clientDetails != null){
+            code *=  clientDetails.hashCode();
         }
-        return lastPages;
+        return code;
+    }
+
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        } else {
+            return false ;
+        }
     }
 }
+

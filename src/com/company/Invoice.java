@@ -24,4 +24,12 @@ abstract public class Invoice {
     public Timestamp getOrderDate(){
         return this.orderDate;
     }
+
+    public int hashCode(){
+        int code = invoiceNumber * clientDetails.hashCode() * orderDate.hashCode();
+        if(totalAmount != 0.0f){
+            code *= totalAmount;
+        }
+        return code;
+    }
 }
