@@ -15,7 +15,7 @@ public class TradeOrder extends AbstractOrder {
         super(newOrderNumber, newClientDetails, newArticleLists, newTotalAmount);
     }
 
-    public static String assertEqualHashCode(TradeOrder firstObj, TradeOrder secondObj)
+    private static String assertEqualHashCode(TradeOrder firstObj, TradeOrder secondObj)
     {
         String message;
         if(firstObj.equals(secondObj))
@@ -29,6 +29,7 @@ public class TradeOrder extends AbstractOrder {
 
         return message;
     }
+
     public static void main(String[] args){
         LinkedList<String> myList = new LinkedList<>();
         myList.add("test1");
