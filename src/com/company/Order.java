@@ -2,17 +2,17 @@ package com.company;
 
 public class Order {
     int year, amount, maxNumOfPagest, numberOfPages, numberOFPagesLeft;
-    boolean isE;
+    boolean  isEOrder;
     String employSignature;
 
     public Order(int NewYear, int newAmount, int newMaxNumOfPagest, int newNumberOfPages, int newNumberOFPagesLeft,
-                 boolean newIsE,String newEmploySignature ){
+                 boolean newIsOrder,String newEmploySignature ){
         year = NewYear;
         amount = newAmount;
         maxNumOfPagest = newMaxNumOfPagest;
         numberOfPages = newNumberOfPages;
         numberOFPagesLeft = newNumberOFPagesLeft;
-        isE = newIsE;
+        isEOrder = newIsOrder;
         employSignature = newEmploySignature;
     }
 

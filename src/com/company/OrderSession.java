@@ -5,7 +5,7 @@ public class OrderSession {
         String message = String.format("year %s, amount %s, maxNumOfPagest %s, numberOfPages %s, " +
                             "numberOFPagesLeft %s, isE %s, employSignature %s", object.getClass(), object.year,
                 object.maxNumOfPagest, object.numberOfPages, object.numberOFPagesLeft,
-                object.isE, object.employSignature);
+                object.isEOrder, object.employSignature);
         return message;
     }
 
