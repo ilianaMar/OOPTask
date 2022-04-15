@@ -13,7 +13,7 @@ public class TradeInvoice extends Invoice{
     }
 
     public static void main(String[] args){
-        //Sample with abstract method, inheritacnse and etc
+        //Sample with abstract method, inheritance and etc
         TradeInvoice firstObject = new TradeInvoice(10001, "User Firstname");
         TradeInvoice secondObject = new TradeInvoice(200002, "User SecondName",
                 13.999999f);
@@ -30,7 +30,7 @@ public class TradeInvoice extends Invoice{
         System.out.println(secondObject.hashCode());
 
 
-        // sample with valid discount
+//      sample with valid discount
         double[] newPrices = {10.90, 0, 23.90, 40.34};
         OrderCalculations firstOrderCalculations = new OrderCalculations(newPrices, 20);
         Hashtable priceCalculations = firstOrderCalculations.calculatePrices();
@@ -43,18 +43,22 @@ public class TradeInvoice extends Invoice{
         System.out.println("Sum with VAT which is discounted: \n" + priceWithDiscount);
 
 
-        //sample with validation method for dicount
+        //sample with validation method for discount
         double[] secondPricesArr = {10.90, 0, 23.90, 40.34, 90.40};
         OrderCalculations secondOrderCalculations = new OrderCalculations(secondPricesArr, 200);
         Hashtable secondPriceCalculations = secondOrderCalculations.calculatePrices();
         Object secondPricesNet = secondPriceCalculations.get("SumNet");
         Object secondPriceWithVAT = secondPriceCalculations.get("sumWithVAT");
-        double secondPriceWithDiscount = secondOrderCalculations.tradeInvoiceDiscount((double) newPriceWithVAT);
-
+        double secondPriceWithDiscount = secondOrderCalculations.tradeInvoiceDiscount((double) secondPricesNet);
 
         System.out.println("Second Sum without VAT: \n" + secondPricesNet);
         System.out.println("Second Sum with VAT: \n" + secondPriceWithVAT);
         System.out.println("Second Sum with VAT which is discounted: \n" + secondPriceWithDiscount);
+
+
+        double[] thirdPricesArr = {};
+        OrderCalculations thirdOrderCalculations = new OrderCalculations(thirdPricesArr, 200);
+        Hashtable thirdPriceCalculations = thirdOrderCalculations.calculatePrices();
 
     }
 

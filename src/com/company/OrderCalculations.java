@@ -3,7 +3,7 @@ package com.company;
 import java.util.Hashtable;
 
 public class OrderCalculations implements InvoiceCalculations{
-    double[] pricesList ;
+    double[] pricesList;
     int discountPercentage;
 
     public OrderCalculations(double[] newPricesList, int newDiscountPercentage){
@@ -11,7 +11,7 @@ public class OrderCalculations implements InvoiceCalculations{
         discountPercentage = newDiscountPercentage;
     }
 
-    public Boolean Validate(){
+    public Boolean isValidDiscount(){
         if(this.discountPercentage <= 0 || this.discountPercentage  > 100){
             String message = String.format("Discount with value %s is not valid!", this.discountPercentage);
             System.out.println(message);
@@ -25,19 +25,29 @@ public class OrderCalculations implements InvoiceCalculations{
         double sumWithVAT;
         Hashtable<String, Double> sumHash = new Hashtable<>();
 
-        for (double singlePrice : this.pricesList) {
-            System.out.println(singlePrice);
-            sumNet += singlePrice;
-        }
-        sumWithVAT = 1.2 * sumNet;
-        sumHash.put("SumNet", sumNet);
-        sumHash.put("sumWithVAT", sumWithVAT);
+        try {
+            if(this.pricesList.length == 0 ){
+                throw new InvoiceException("Prices list is " + new Throwable().getCause());
+            }else{
+                for (double singlePrice : this.pricesList) {
+                    sumNet += singlePrice;
+                }
+                sumWithVAT = 1.2 * sumNet;
+                sumHash.put("SumNet", sumNet);
+                sumHash.put("sumWithVAT", sumWithVAT);
 
+            }
+
+        }catch (Exception err) {
+            System.out.println(err.getMessage());
+            throw err;
+
+        }
         return sumHash;
     }
 
     public double tradeInvoiceDiscount(double priceAmount) {
-        if (this.Validate()){
+        if (this.isValidDiscount()){
             return priceAmount - (priceAmount * ((double) this.discountPercentage/100));
         }
 

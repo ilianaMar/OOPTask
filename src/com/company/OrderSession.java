@@ -9,17 +9,39 @@ public class OrderSession {
         return message;
     }
 
-    public static void main(String[] args) {
-        Orders firstObj = new Orders(2020, 100, 20,
-                10 , 9, true, "first user signature");
+    public static void main(String[] args) throws OrderException {
+        Orders firstObj = new Orders(
+                2020, 100, 20,
+                10 , 9, true, "first user signature"
+        );
 
-        Orders secondObj = new Orders(2021, 90, 30,
-                20 , 18, false, "second user signature");
+        Orders secondObj = new Orders(
+                2021, 90, 30,
+                20 , 18, false,
+                "second user signature"
+        );
         secondObj.changeEmploySignature("Updated second signature");
         float decreasedPages = (float) firstObj.usedPages(2);
 
         System.out.println("First order decreased pages " + decreasedPages);
         System.out.println("First order" + orderPrint(firstObj));
         System.out.println("Second order" + orderPrint(secondObj));
+
+        //order Exception
+        try {
+            firstObj.changeEmploySignature("");
+        } catch (OrderException | InvoiceException e) {
+            System.out.println(e.getMessage());
+        }finally {
+            System.out.println("The 'try catch' is finished.");
+        }
+
+
+        try {
+            secondObj.changeEmploySignature(" ");
+        } catch (OrderException | InvoiceException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }
