@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.Hashtable;
 
-public class OrderCalculations implements InvoiceCalculations, TradeInvoiceCalculation{
+public class OrderCalculations implements InvoiceCalculations{
     double[] pricesList ;
     int discountPercentage;
 
@@ -20,7 +20,6 @@ public class OrderCalculations implements InvoiceCalculations, TradeInvoiceCalcu
         return true;
     }
 
-    @Override
     public Hashtable<String, Double> calculatePrices() {
         double sumNet  = 0;
         double sumWithVAT;
@@ -37,7 +36,6 @@ public class OrderCalculations implements InvoiceCalculations, TradeInvoiceCalcu
         return sumHash;
     }
 
-    @Override
     public double tradeInvoiceDiscount(double priceAmount) {
         if (this.Validate()){
             return priceAmount - (priceAmount * ((double) this.discountPercentage/100));
