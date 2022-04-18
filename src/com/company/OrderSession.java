@@ -42,6 +42,5 @@ public class OrderSession {
         } catch (OrderException | InvoiceException e) {
             System.out.println(e.getMessage());
         }
-
     }
 }
