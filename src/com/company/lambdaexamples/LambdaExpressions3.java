@@ -83,8 +83,8 @@ public class LambdaExpressions3 {
 
     //5. Направете метод, който по списък от цели числа, да връща списък от корен квадратен на положителните числа в списъка.
     public static void getSquareNumbers(List<Integer> integers) {
-        List<Integer> numberList = new ArrayList<>();
-        integers.stream().filter(i -> i > 0).forEach(n -> numberList.add(n * 2));
+        List<Double> numberList = new ArrayList<>();
+        integers.stream().filter(i -> i > 0).forEach(n -> numberList.add(Math.sqrt(n)));
         System.out.println(numberList);
     }
 }
