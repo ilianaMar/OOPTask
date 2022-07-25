@@ -9,13 +9,17 @@ public class LambdaExpressions3 {
         List<Integer> intNumbers = Arrays.asList(100, 999, -9, 8, 80);
         List<Person> listPerson = Arrays.asList(
                 new Person("Iliana Markova", 165),
-                new Person("Test Testov", 180),
-                new Person("LoremLoremLorem  LoremLoremLorem", 155)
-                );
+                new Person("Test Testov", 200),
+                new Person("LoremLoremLorem  LoremLoremLorem", 180)
+        );
+        List<Person> listPerson2 = new ArrayList<>();
+
         taskOne(intNumbers);
         addPersonNames(listPerson);
         getLongNameCharacter(listPerson);
+        getLongNameCharacter(listPerson2);
         getHighestPerson(listPerson);
+        getHighestPerson(listPerson2);
         getSquareNumbers(intNumbers);
     }
 
@@ -45,23 +49,30 @@ public class LambdaExpressions3 {
 
 
     public static void getLongNameCharacter(List<Person> personObjects) {
-        int nameCharacters = personObjects.stream().map(Person::getName).mapToInt(String::length).max().orElse(-1);
-        String name = personObjects.stream().filter(person -> person.getName().length() == nameCharacters).collect(toList()).get(0).getName();
-        System.out.printf("Length of longest name is %s%n",nameCharacters);
-        System.out.printf("The name is %s%n", name);
+        OptionalInt nameCharacters = personObjects.stream().map(Person::getName).mapToInt(String::length).max();
+        if (nameCharacters.isPresent()) {
+            String name = personObjects.stream().filter(person -> person.getName().length() == nameCharacters.getAsInt()).collect(toList()).get(0).getName();
+            System.out.printf("Length of longest name is %s%n", nameCharacters.getAsInt());
+            System.out.printf("The name is %s%n", name);
+        } else {
+            System.out.println("There aren't any persons!");
+        }
     }
 
 // 4. Нека Person има и височина. Направете метод, който да връща най-високия Person и му отпечатайте името в конзолата.
 
     public static void getHighestPerson(List<Person> personObjects) {
 
-        Person maxPersonHeight = personObjects
+        Optional<Person> maxPersonHeight = personObjects
                 .stream()
-                .max(Comparator.comparing(Person::getHeight))
-                .orElseThrow(NoSuchElementException::new);
+                .max(Comparator.comparing(Person::getHeight));
 
-        System.out.printf("The highest person is %s with %s%n",
-                maxPersonHeight.getName(), maxPersonHeight.getHeight());
+        String message = (maxPersonHeight.isPresent())
+                ? String.format("The highest person is %s with %s%n",
+                maxPersonHeight.get().getName(), maxPersonHeight.get().getHeight())
+                : "There aren't any persons";
+
+        System.out.println(message);
     }
 
 
