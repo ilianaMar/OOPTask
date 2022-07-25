@@ -45,7 +45,7 @@ public class LambdaExpressions3 {
 
 
     public static void getLongNameCharacter(List<Person> personObjects) {
-        int nameCharacters = personObjects.stream().map(Person::getName).mapToInt(String::length).max().orElse(-1);;
+        int nameCharacters = personObjects.stream().map(Person::getName).mapToInt(String::length).max().orElse(-1);
         String name = personObjects.stream().filter(person -> person.getName().length() == nameCharacters).collect(toList()).get(0).getName();
         System.out.printf("Length of longest name is %s%n",nameCharacters);
         System.out.printf("The name is %s%n", name);
